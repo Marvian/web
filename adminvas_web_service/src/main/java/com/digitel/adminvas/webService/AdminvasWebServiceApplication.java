@@ -1,4 +1,4 @@
-package com.digitel.adminvas.web.service;
+package com.digitel.adminvas.webService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
