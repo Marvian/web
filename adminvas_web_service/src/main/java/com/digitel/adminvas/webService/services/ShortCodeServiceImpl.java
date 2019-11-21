@@ -20,5 +20,18 @@ public class ShortCodeServiceImpl implements IShortCodeService {
 	public List<ShortCode> findAll() {
 		return (List<ShortCode>) shortCodeDao.findAll();
 	}
+	
+	@Override
+	public ShortCode findById(Integer id) {
+		return shortCodeDao.findById(id).orElse(null);
+	}
+
+	@Override
+	public ShortCode save(ShortCode shortcode) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }
