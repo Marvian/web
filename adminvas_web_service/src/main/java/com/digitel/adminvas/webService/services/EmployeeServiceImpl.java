@@ -6,22 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.digitel.adminvas.webService.adomain.BlackList;
-import com.digitel.adminvas.webService.dao.IBlackListDao;
+import com.digitel.adminvas.webService.adomain.Employee;
+import com.digitel.adminvas.webService.dao.IEmployeeDao;
 
 @Service
-public class BlackListServiceImpl implements IBlackListService {
-	
+public class EmployeeServiceImpl implements IEmployeeService {
+
 	@Autowired
-	private IBlackListDao dao;
+	private IEmployeeDao employeeDao;
 	
 	@Override
 	@Transactional(readOnly = true)
-	public List<BlackList> findAll() {
-		return (List<BlackList>) dao.findAll();
-		
+	public List<Employee> findAll() {
+		return (List<Employee>) employeeDao.findAll();
 	}
-
-
 
 }
