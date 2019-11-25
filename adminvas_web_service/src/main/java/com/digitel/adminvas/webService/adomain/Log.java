@@ -1,0 +1,78 @@
+package com.digitel.adminvas.webService.adomain;
+
+import java.io.Serializable;
+import java.sql.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table (name = "A_LOG")
+public class Log implements Serializable{
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_log")
+	@Column(name = "log_id")
+	private int Id;
+	
+	@Column(name = "log_tipo_accion")
+	private String action;
+	
+	@Column(name = "log_fecha")
+	private Date dateAction;
+	
+	@Column(name = "log_administrador")
+	private String Admin;
+	
+	@Column(name = "log_mac")
+	private String macAddress;
+	
+	
+	public int getId() {
+		return Id;
+	}
+
+	public void setId(int id) {
+		Id = id;
+	}
+
+	public String getAction() {
+		return action;
+	}
+	
+	public void setAction(String action) {
+		this.action = action;
+	}
+	
+	public Date getDateAction() {
+		return dateAction;
+	}
+	
+	public void setDateAction(Date dateAction) {
+		this.dateAction = dateAction;
+	}
+	
+	public String getAdmin() {
+		return Admin;
+	}
+	
+	public void setAdmin(String admin) {
+		Admin = admin;
+	}
+	
+	public String getMacAddress() {
+		return macAddress;
+	}
+	
+	public void setMacAddress(String macAddress) {
+		this.macAddress = macAddress;
+	}
+	
+	private static final long serialVersionUID = 1L;
+	 
+
+}

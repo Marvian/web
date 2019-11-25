@@ -22,14 +22,15 @@ public class ShortCodeServiceImpl implements IShortCodeService {
 	}
 	
 	@Override
+	@Transactional(readOnly = true)
 	public ShortCode findById(Integer id) {
 		return shortCodeDao.findById(id).orElse(null);
 	}
 
 	@Override
-	public ShortCode save(ShortCode shortcode) {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional
+	public void save(ShortCode shortcode) {
+		shortCodeDao.save(shortcode);
 	}
 
 	
