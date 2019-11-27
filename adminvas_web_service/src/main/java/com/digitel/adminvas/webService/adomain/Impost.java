@@ -1,16 +1,53 @@
 package com.digitel.adminvas.webService.adomain;
 
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
 
-public class Impost {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table (name = "A_IMPUESTO")
+public class Impost implements Serializable{
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_impuesto")
+	@Column(name = "imp_id")
+	private int id;
+	
+	@Column(name = "imp_nombre")
 	private String name;
+	
+	@Column(name = "imp_porcentaje")
 	private int percent;
+	
+	@Column(name = "imp_fecha_vigencia")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date validDate;
+	
+	@Column(name = "imp_fecha_cierre")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date closingDate;
+	
+	@Column(name = "imp_vigente")
 	private boolean valid;
 	
 	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -51,5 +88,6 @@ public class Impost {
 		this.valid = valid;
 	}
 	
+	private static final long serialVersionUID = 1L;
 
 }

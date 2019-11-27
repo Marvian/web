@@ -1,7 +1,7 @@
 package com.digitel.adminvas.webService.adomain;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table (name = "A_LOG")
@@ -23,6 +25,7 @@ public class Log implements Serializable{
 	private String action;
 	
 	@Column(name = "log_fecha")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateAction;
 	
 	@Column(name = "log_administrador")
