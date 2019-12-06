@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +16,7 @@ public class BasicTariff implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_tarifa_base")
+	@SequenceGenerator(name = "SEQ_tarifa_base", allocationSize = 1)
 	@Column(name = "tba_id")
 	private int id;
 	

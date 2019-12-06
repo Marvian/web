@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.digitel.adminvas.webService.adomain.Area;
 import com.digitel.adminvas.webService.dao.IAreaDao;
 
-
 @Service
 public class AreaServiceImpl implements IAreaService{
 

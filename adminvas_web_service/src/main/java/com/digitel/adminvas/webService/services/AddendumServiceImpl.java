@@ -1,5 +1,6 @@
 package com.digitel.adminvas.webService.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,7 +10,9 @@ import com.digitel.adminvas.webService.dao.IAddendumDao;
 @Service
 public class AddendumServiceImpl implements IAddendumService {
 
+	@Autowired
 	private IAddendumDao AddendumDao;
+		
 	
 	@Override
 	@Transactional(readOnly = true)
@@ -19,8 +22,8 @@ public class AddendumServiceImpl implements IAddendumService {
 
 	@Override
 	@Transactional
-	public void save(Addendum addendum) {
-		AddendumDao.save(addendum);
+	public Addendum save(Addendum addendum) {
+		return AddendumDao.save(addendum);
 	
 	}
 

@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,6 +19,7 @@ public class ShortCode implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_NUMERO_CORTO")
+	@SequenceGenerator(name = "SEQ_NUMERO_CORTO", allocationSize = 1)
 	@Column(name = "nco_id")
 	private int id;
 	

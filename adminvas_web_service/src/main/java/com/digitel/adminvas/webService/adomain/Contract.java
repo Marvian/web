@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,25 +20,21 @@ public class Contract implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_contrato")
+	@SequenceGenerator(name = "SEQ_contrato", allocationSize = 1)
 	@Column(name = "con_id")
 	private int id;
 	
-	@Column(name = "con_porcenaje_rev_sha_prov")
-	private int percent;
+	@Column(name = "con_numero")
+	private String number;
 	
-	@Column(name = "con_fecha_solicitud")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date requestDate;
+	@Column(name = "con_porcentaje_rev_sha_prov")
+	private int percent;
 	
 	@Column(name = "con_fecha_firma")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date firmDate;
 	
-	@Column(name = "con_fecha_ult_cambio")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date lastChangeDate;
-	
-	@Column(name = "con_fecha_caducidad")
+	@Column(name = "con_fecha_cierre")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date expirationDate;
 	
@@ -56,6 +53,15 @@ public class Contract implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
 
 	public int getPercent() {
 		return percent;
@@ -65,13 +71,6 @@ public class Contract implements Serializable {
 		this.percent = percent;
 	}
 	
-	public Date getRequestDate() {
-		return requestDate;
-	}
-	
-	public void setRequestDate(Date requestDate) {
-		this.requestDate = requestDate;
-	}
 	
 	public Date getFirmDate() {
 		return firmDate;
@@ -79,14 +78,6 @@ public class Contract implements Serializable {
 	
 	public void setFirmDate(Date firmDate) {
 		this.firmDate = firmDate;
-	}
-	
-	public Date getLastChangeDate() {
-		return lastChangeDate;
-	}
-	
-	public void setLastChangeDate(Date lastChangeDate) {
-		this.lastChangeDate = lastChangeDate;
 	}
 	
 	public Date getExpirationDate() {

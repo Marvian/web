@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,6 +19,7 @@ public class MonetaryUnit implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_unidad_monetaria")
+	@SequenceGenerator(name = "SEQ_unidad_monetaria", allocationSize = 1)
 	@Column(name = "umo_id")
 	private int id;
 	

@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +16,7 @@ public class Area implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_area")
+	@SequenceGenerator(name = "SEQ_area", allocationSize = 1)
 	@Column(name = "are_id")
 	private int id;
 	

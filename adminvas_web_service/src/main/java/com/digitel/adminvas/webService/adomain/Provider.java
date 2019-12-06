@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -16,13 +17,16 @@ import javax.persistence.TemporalType;
 @Table (name = "A_PROVEEDOR")
 public class Provider extends User implements Serializable {
 	
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_provider")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_proveedor")
+	@SequenceGenerator(name = "SEQ_proveedor", allocationSize = 1)
 	@Column(name = "pro_id")
 	private int id;
 	
 	@Column(name = "pro_sobrenombre")
+	private String nickname;
+	
+	@Column(name = "pro_nombre")
 	private String name;
 	
 	@Column(name = "pro_tipo_rif")
@@ -41,16 +45,11 @@ public class Provider extends User implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date lastloginDate;
 	
-	@Column(name = "pro_intetos_ingreso")
+	@Column(name = "pro_intentos_ingreso")
 	private int intents;
 	
 	@Column(name = "pro_status")
-	private int status;
-	
-	private boolean valid;
-	private Date validDate;
-	private String[] interfaces;
-	
+	private String status;
 	
 	
 	public int getId() {
@@ -59,6 +58,14 @@ public class Provider extends User implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	public String getName() {
@@ -117,38 +124,17 @@ public class Provider extends User implements Serializable {
 		this.intents = intents;
 	}
 	
-	public int getStatus() {
+	public String getStatus() {
 		return status;
 	}
-	
-	public void setStatus(int status) {
+
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
-	public boolean isValid() {
-		return valid;
-	}
 
-	public void setValid(boolean valid) {
-		this.valid = valid;
-	}
 
-	public Date getValidDate() {
-		return validDate;
-	}
 
-	public void setValidDate(Date validDate) {
-		this.validDate = validDate;
-	}
-
-	public String[] getInterfaces() {
-		return interfaces;
-	}
-
-	public void setInterfaces(String[] interfaces) {
-		this.interfaces = interfaces;
-	}
-	
 	private static final long serialVersionUID = 1L;
 
 }

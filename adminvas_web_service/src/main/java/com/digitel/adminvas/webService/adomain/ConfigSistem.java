@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +16,7 @@ public class ConfigSistem implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_config_sistema")
+	@SequenceGenerator(name = "SEQ_config_sistema", allocationSize = 1)
 	@Column(name = "csi_id")
 	private int id;
 	

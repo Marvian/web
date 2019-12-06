@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,6 +19,7 @@ public class Addendum implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_addendum")
+	@SequenceGenerator(name = "SEQ_addendum", allocationSize = 1)
 	@Column(name = "add_id")
 	private int id;
 	
@@ -25,11 +27,7 @@ public class Addendum implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createDate;
 	
-	@Column (name = "add_fecha_caducidad")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date closingDate;
-	
-	@Column (name = "add_porcentaje_rev_sha_prov")
+	@Column (name = "add_porcentajes_rev_sha_prov")
 	private int percent;
 	
 	@Column (name = "add_tipo")
@@ -48,14 +46,6 @@ public class Addendum implements Serializable {
 	
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
-	}
-	
-	public Date getClosingDate() {
-		return closingDate;
-	}
-	
-	public void setClosingDate(Date closingDate) {
-		this.closingDate = closingDate;
 	}
 	
 	public int getPercent() {

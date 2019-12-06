@@ -6,6 +6,6 @@ public interface IAddendumService {
 		
 	public Addendum findById(Integer id); 
 	
-	public void save(Addendum addendum);
+	public Addendum save(Addendum addendum);
 
 }
