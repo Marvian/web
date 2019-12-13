@@ -28,8 +28,9 @@ public class ProviderServiceImpl implements IProviderService {
 	}
 
 	@Override
-	public void save(Provider provider) {
-		providerDao.save(provider);
+	@Transactional
+	public Provider save(Provider provider) {
+		return providerDao.save(provider);
 		
 	}
 

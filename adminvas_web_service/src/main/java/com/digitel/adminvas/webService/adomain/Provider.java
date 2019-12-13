@@ -30,7 +30,7 @@ public class Provider extends User implements Serializable {
 	private String name;
 	
 	@Column(name = "pro_tipo_rif")
-	private char typeRif;
+	private String typeRif;
 	
 	@Column(name = "pro_rif")
 	private String rif;
@@ -76,11 +76,11 @@ public class Provider extends User implements Serializable {
 		this.name = name;
 	}
 	
-	public char getTypeRif() {
+	public String getTypeRif() {
 		return typeRif;
 	}
 	
-	public void setTypeRif(char typeRif) {
+	public void setTypeRif(String typeRif) {
 		this.typeRif = typeRif;
 	}
 	

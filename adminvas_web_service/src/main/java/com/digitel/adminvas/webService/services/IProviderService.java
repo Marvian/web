@@ -10,6 +10,6 @@ public interface IProviderService {
 	
 	public Provider findById(Integer id);
 	
-	public void save(Provider provider);
+	public Provider save(Provider provider);
 
 }
