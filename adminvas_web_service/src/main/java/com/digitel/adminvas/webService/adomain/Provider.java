@@ -51,6 +51,9 @@ public class Provider extends User implements Serializable {
 	@Column(name = "pro_status")
 	private String status;
 	
+	@Column(name = "pro_fk_are")
+	private int fk_area;
+	
 	
 	public int getId() {
 		return id;
@@ -131,6 +134,15 @@ public class Provider extends User implements Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	public int getFk_area() {
+		return fk_area;
+	}
+
+	public void setFk_area(int fk_area) {
+		this.fk_area = fk_area;
+	}
+
 
 
 
