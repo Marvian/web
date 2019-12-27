@@ -19,7 +19,7 @@ public class BlackListController {
 	@Autowired
 	private IBlackListService blackListService;
 	
-	@GetMapping(value = "/readBlackList")
+	@GetMapping(value = "/readAll")
 	public List<BlackList> index(){
 		return blackListService.findAll();
 	}
