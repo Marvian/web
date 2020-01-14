@@ -18,8 +18,8 @@ import javax.persistence.TemporalType;
 public class Addendum implements Serializable {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_addendum")
-	@SequenceGenerator(name = "SEQ_addendum", allocationSize = 1)
+	@GeneratedValue(generator="SEQ_addendum", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "SEQ_addendum",  sequenceName = "SEQ_addendum", allocationSize = 1)
 	@Column(name = "add_id")
 	private int id;
 	

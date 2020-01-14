@@ -15,8 +15,8 @@ import javax.persistence.Table;
 public class BasicTariff implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_tarifa_base")
-	@SequenceGenerator(name = "SEQ_tarifa_base", allocationSize = 1)
+	@GeneratedValue(generator="SEQ_tarifa_base", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "SEQ_tarifa_base", sequenceName = "SEQ_tarifa_base", allocationSize = 1)
 	@Column(name = "tba_id")
 	private int id;
 	

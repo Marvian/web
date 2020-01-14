@@ -18,8 +18,8 @@ import javax.persistence.TemporalType;
 public class Impost implements Serializable{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_impuesto")
-	@SequenceGenerator(name = "SEQ_impuesto", allocationSize = 1)
+	@GeneratedValue(generator="SEQ_impuesto", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "SEQ_impuesto", sequenceName = "SEQ_impuesto", allocationSize = 1)
 	@Column(name = "imp_id")
 	private int id;
 	

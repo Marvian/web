@@ -18,8 +18,8 @@ import javax.persistence.TemporalType;
 public class MonetaryUnit implements Serializable {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_unidad_monetaria")
-	@SequenceGenerator(name = "SEQ_unidad_monetaria", allocationSize = 1)
+	@GeneratedValue(generator="SEQ_unidad_monetaria", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "SEQ_unidad_monetaria", sequenceName = "SEQ_unidad_monetaria", allocationSize = 1)
 	@Column(name = "umo_id")
 	private int id;
 	

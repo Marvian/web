@@ -18,8 +18,8 @@ import javax.persistence.TemporalType;
 public class BlackList implements Serializable{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_lista_negra")
-	@SequenceGenerator(name = "SEQ_lista_negra", allocationSize = 1)
+	@GeneratedValue(generator="SEQ_lista_negra", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "SEQ_lista_negra", sequenceName = "SEQ_lista_negra", allocationSize = 1)
 	@Column(name = "lne_id")
 	private int id;
 	

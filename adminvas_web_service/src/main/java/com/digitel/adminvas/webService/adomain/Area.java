@@ -15,8 +15,8 @@ import javax.persistence.Table;
 public class Area implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_area")
-	@SequenceGenerator(name = "SEQ_area", allocationSize = 1)
+	@GeneratedValue(generator="SEQ_area", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "SEQ_area", sequenceName = "SEQ_area", allocationSize = 1)
 	@Column(name = "are_id")
 	private int id;
 	

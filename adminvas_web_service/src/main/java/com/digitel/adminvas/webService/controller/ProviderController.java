@@ -27,20 +27,20 @@ public class ProviderController {
 	
 	@GetMapping(value = "/readAll")
 	public List<Provider> index(){
-		
 		return providerService.findAll();
 		
 	}
 	
 	@GetMapping(value = "read/{id}")
-	public Provider show(@PathVariable Integer id){
-		
+	public Provider show(@PathVariable Integer id){		
 		return providerService.findById(id);
 	}
 	
 	@PostMapping(value = "/create")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Provider create(@RequestBody Provider provider) {
+		System.out.println(provider);
+		System.out.println("creando nuevo proveedor");
 		return providerService.save(provider);
 	}
 	

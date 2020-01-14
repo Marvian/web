@@ -18,8 +18,8 @@ import javax.persistence.TemporalType;
 public class ShortCode implements Serializable {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_NUMERO_CORTO")
-	@SequenceGenerator(name = "SEQ_NUMERO_CORTO", allocationSize = 1)
+	@GeneratedValue(generator="SEQ_NUMERO_CORTO", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "SEQ_NUMERO_CORTO", sequenceName = "SEQ_NUMERO_CORTO", allocationSize = 1)
 	@Column(name = "nco_id")
 	private int id;
 	

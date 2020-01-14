@@ -16,8 +16,8 @@ import javax.persistence.Table;
 public class Request implements Serializable {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_solicitud")
-	@SequenceGenerator(name = "SEQ_solicitud", allocationSize = 1)
+	@GeneratedValue(generator="SEQ_solicitud", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "SEQ_solicitud", sequenceName = "SEQ_solicitud", allocationSize = 1)
 	@Column(name = "sol_id")
 	private int id;
 	

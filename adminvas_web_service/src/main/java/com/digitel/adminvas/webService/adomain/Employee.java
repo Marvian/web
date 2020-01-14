@@ -15,8 +15,8 @@ import javax.persistence.Table;
 public class Employee extends User implements Serializable{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_empleado")
-	@SequenceGenerator(name = "SEQ_empleado", allocationSize = 1)
+	@GeneratedValue(generator="SEQ_empleado", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "SEQ_empleado", sequenceName = "SEQ_empleado", allocationSize = 1)
 	@Column(name = "emp_id")
 	private int id;
 	

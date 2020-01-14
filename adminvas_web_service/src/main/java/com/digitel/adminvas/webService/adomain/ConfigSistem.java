@@ -15,8 +15,8 @@ import javax.persistence.Table;
 public class ConfigSistem implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_config_sistema")
-	@SequenceGenerator(name = "SEQ_config_sistema", allocationSize = 1)
+	@GeneratedValue(generator="SEQ_config_sistema", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "SEQ_config_sistema", sequenceName = "SEQ_config_sistema", allocationSize = 1)
 	@Column(name = "csi_id")
 	private int id;
 	

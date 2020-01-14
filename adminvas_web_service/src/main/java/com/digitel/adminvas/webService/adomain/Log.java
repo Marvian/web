@@ -18,8 +18,8 @@ import javax.persistence.TemporalType;
 public class Log implements Serializable{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_log")
-	@SequenceGenerator(name = "SEQ_log", allocationSize = 1)
+	@GeneratedValue(generator="SEQ_log", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "SEQ_log", sequenceName = "SEQ_log", allocationSize = 1)
 	@Column(name = "log_id")
 	private int Id;
 	

@@ -16,10 +16,10 @@ import javax.persistence.TemporalType;
 @Entity
 @Table (name = "A_PROVEEDOR")
 public class Provider extends User implements Serializable {
-	
+		
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_proveedor")
-	@SequenceGenerator(name = "SEQ_proveedor", allocationSize = 1)
+	@GeneratedValue(generator="SEQ_PROVEEDOR", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "SEQ_PROVEEDOR", sequenceName = "SEQ_PROVEEDOR", allocationSize = 1)
 	@Column(name = "pro_id")
 	private int id;
 	

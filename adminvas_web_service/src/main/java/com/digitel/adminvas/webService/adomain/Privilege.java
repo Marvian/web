@@ -15,8 +15,8 @@ import javax.persistence.Table;
 public class Privilege implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="SEQ_privilegio")
-	@SequenceGenerator(name = "SEQ_privilegio", allocationSize = 1)
+	@GeneratedValue(generator="SEQ_privilegio", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "SEQ_privilegio", sequenceName = "SEQ_privilegio", allocationSize = 1)
 	@Column(name = "pri_id")
 	private int id;
 	
