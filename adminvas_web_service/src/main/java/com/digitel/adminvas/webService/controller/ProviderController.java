@@ -1,9 +1,14 @@
 package com.digitel.adminvas.webService.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,27 +37,80 @@ public class ProviderController {
 	}
 	
 	@GetMapping(value = "read/{id}")
-	public Provider show(@PathVariable Integer id){		
-		return providerService.findById(id);
+	public ResponseEntity<?> show(@PathVariable Integer id){
+		
+		Provider provider = null;
+		
+		Map<String, Object> response = new HashMap<>();
+		
+		try {
+			provider = providerService.findById(id);
+		} catch (DataAccessException e) {
+			response.put("Mensaje", "Error al realizar la consulta");
+			response.put("Error", e.getMessage().concat(": ".concat(e.getMostSpecificCause().getMessage())));
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		if (provider == null) {
+			response.put("Mensaje", "El proveedor con ese ID ".concat(id.toString()).
+					concat(" no existe en la base de dato"));
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+		}		
+		return new ResponseEntity<Provider>(provider, HttpStatus.OK);
 	}
+		
 	
 	@PostMapping(value = "/create")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Provider create(@RequestBody Provider provider) {
+	public ResponseEntity<?> create(@RequestBody Provider provider) {
 		System.out.println(provider);
 		System.out.println("creando nuevo proveedor");
-		return providerService.save(provider);
+		
+		Provider providerNew = null;
+		
+		Map<String, Object> response = new HashMap<>();
+		
+		try {
+				providerNew = providerService.save(provider);
+		} catch (DataAccessException e) {
+			response.put("Mensaje", "Error al insertar en la base de dato");
+			response.put("Error", e.getMessage().concat(": ".concat(e.getMostSpecificCause().getMessage())));
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+		response.put("Mensaje", "Se realizo el insert con exito");
+		response.put("Proveedor", providerNew);
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 	
-	@PutMapping(value ="/provider/{id}")
-	public Provider update(@RequestBody Provider provider, @PathVariable Integer id) {
-		Provider providerguardado = providerService.findById(id);
+	@PutMapping(value ="/update/{id}")
+	public  ResponseEntity<?> update(@RequestBody Provider provider, @PathVariable Integer id) {
+		Provider providerBefore = providerService.findById(id);
+		Provider providerAfter = null;
 		
-		providerguardado.setTypeRif(provider.getTypeRif());
-		providerguardado.setRif(provider.getRif());
-		providerguardado.setNit(provider.getRif());
-		providerguardado.setAddress(provider.getAddress());		
+		Map<String, Object> response = new HashMap<>();
+		if (providerBefore == null) {
+			response.put("Mensaje", "Error: no se pudo editar el proveedor con el ID ".concat(id.toString()).
+					concat(" no existe en la base de dato"));
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+		}
 		
-			return providerService.save(providerguardado);		
+		try {			
+		providerBefore.setTypeRif(provider.getTypeRif());
+		providerBefore.setRif(provider.getRif());
+		providerBefore.setNit(provider.getRif());
+		providerBefore.setAddress(provider.getAddress());
+		providerBefore.setLastloginDate(provider.getLastloginDate());
+		
+		providerAfter = providerService.save(providerBefore);
+		
+		} catch (DataAccessException e) {
+			response.put("Mensaje", "Error al realizar la actualización");
+			response.put("Error", e.getMessage().concat(": ".concat(e.getMostSpecificCause().getMessage())));
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		response.put("Mensaje", "Se realizo la actualización con exito");
+		response.put("Proveedor", providerAfter);
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED) ;		
 	}
 }
