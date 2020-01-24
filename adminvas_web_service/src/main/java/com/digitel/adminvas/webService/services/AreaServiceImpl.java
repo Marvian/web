@@ -28,4 +28,9 @@ public class AreaServiceImpl implements IAreaService{
 		
 	}
 
+	@Override
+	public Area findById(Integer id) {
+		return AreaDao.findById(id).orElse(null);
+	}
+
 }

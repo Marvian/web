@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -11,91 +12,69 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.digitel.adminvas.webService.adomain.Request;
-import com.digitel.adminvas.webService.services.IRequestService;
+import com.digitel.adminvas.webService.adomain.Impost;
+import com.digitel.adminvas.webService.services.IImpostService;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
-@RequestMapping(value = "/Request")
-public class RequestController {
+@RequestMapping(value = "/impost")
+public class ImpostController {
 	
 	@Autowired
-	private IRequestService requestService;
+	private IImpostService impostService;
 	
 	@GetMapping(value = "/readAll")
-	public List<Request> index(){
-		return requestService.findAll();		
+	public List<Impost> index(){
+		return impostService.findAll();
+		
 	}
 	
 	@GetMapping(value = "read/{id}")
 	public ResponseEntity<?> show(@PathVariable Integer id){
 		
-		Request request = null;
+		Impost impost = null;
 		
 		Map<String, Object> response = new HashMap<>();
 		
 		try {
-			request = requestService.findById(id);
+			impost = impostService.findById(id);
 		} catch (DataAccessException e) {
 			response.put("Mensaje", "Error al realizar la consulta");
 			response.put("Error", e.getMessage().concat(": ".concat(e.getMostSpecificCause().getMessage())));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
-		if (request == null) {
+		if (impost == null) {
 			response.put("Mensaje", "El proveedor con ese ID ".concat(id.toString()).
 					concat(" no existe en la base de dato"));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
 		}		
-		return new ResponseEntity<Request>(request, HttpStatus.OK);
+		return new ResponseEntity<Impost>(impost, HttpStatus.OK);
 	}
-		
 	
-	@PostMapping(value = "/create")
-	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<?> create(@RequestBody Request request) {
-		System.out.println(request);
-		System.out.println("creando nuevo proveedor");
-		
-		Request requestNew = null;
-		
-		Map<String, Object> response = new HashMap<>();
-		
-		try {
-			requestNew = requestService.save(request);
-		} catch (DataAccessException e) {
-			response.put("Mensaje", "Error al insertar en la base de dato");
-			response.put("Error", e.getMessage().concat(": ".concat(e.getMostSpecificCause().getMessage())));
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-			}
-		response.put("Mensaje", "Se realizo el insert con exito");
-		response.put("Proveedor", requestNew);
-		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
-	}
 	
 	@PutMapping(value ="/update/{id}")
-	public  ResponseEntity<?> update(@RequestBody Request request, @PathVariable Integer id) {
-		Request requestBefore = requestService.findById(id);
-		Request requestAfter = null;
+	public  ResponseEntity<?> update(@RequestBody Impost impost, @PathVariable Integer id) {
+		Impost impostBefore = impostService.findById(id);
+		Impost impostAfter = null;
 		
 		Map<String, Object> response = new HashMap<>();
-		if (requestBefore == null) {
-			response.put("Mensaje", "Error: no se pudo editar la solicitud con el ID ".concat(id.toString()).
+		if (impostBefore == null) {
+			response.put("Mensaje", "Error: no se pudo editar el proveedor con el ID ".concat(id.toString()).
 					concat(" no existe en la base de dato"));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
 		}
 		
 		try {			
-			requestBefore.setCost(request.getCost());
+			impostBefore.setName(impost.getName());
+			impostBefore.setPercent(impost.getPercent());
 		
-			requestAfter = requestService.save(requestBefore);
+			impostAfter = impostService.save(impostBefore);
 		
 		} catch (DataAccessException e) {
 			response.put("Mensaje", "Error al realizar la actualización");
@@ -104,8 +83,7 @@ public class RequestController {
 		}
 		
 		response.put("Mensaje", "Se realizo la actualización con exito");
-		response.put("Proveedor", requestAfter);
+		response.put("Impuesto", impostAfter);
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED) ;		
 	}
-
 }

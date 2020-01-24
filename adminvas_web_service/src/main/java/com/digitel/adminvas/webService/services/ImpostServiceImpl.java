@@ -20,11 +20,17 @@ public class ImpostServiceImpl implements IImpostService{
 	public List<Impost> findAll() {
 		return (List<Impost>) ImpostDao.findAll();
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Impost findById(Integer id) {
+		return ImpostDao.findById(id).orElse(null);
+	}
 
 	@Override
 	@Transactional
-	public void save(Impost impost) {
-		ImpostDao.save(impost);
+	public Impost save(Impost impost) {
+		return ImpostDao.save(impost);
 		
 	}
 

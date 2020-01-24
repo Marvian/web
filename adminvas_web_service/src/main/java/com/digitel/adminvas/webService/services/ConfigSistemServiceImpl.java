@@ -20,12 +20,17 @@ public class ConfigSistemServiceImpl implements IConfigSistemService{
 	public List<ConfigSistem> findAll() {
 		return (List<ConfigSistem>) ConfigSistemDao.findAll();
 	}
+	
+	@Override
+	public ConfigSistem findById(Integer id) {
+		return ConfigSistemDao.findById(id).orElse(null);
+	}
 
 	@Override
 	@Transactional
-	public void save(ConfigSistem configSistem) {
-		ConfigSistemDao.save(configSistem);
+	public ConfigSistem save(ConfigSistem configSistem) {
+		return ConfigSistemDao.save(configSistem);
 		
 	}
-
+	
 }

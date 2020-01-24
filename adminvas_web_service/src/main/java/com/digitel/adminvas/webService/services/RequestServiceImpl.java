@@ -23,9 +23,14 @@ public class RequestServiceImpl implements IRequestService{
 
 	@Override
 	@Transactional
-	public void save(Request request) {
-		RequestDao.save(request);
+	public Request save(Request request) {
+		return RequestDao.save(request);
 		
+	}
+
+	@Override
+	public Request findById(Integer id) {
+		return RequestDao.findById(id).orElse(null);
 	}
 
 }

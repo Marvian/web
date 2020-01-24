@@ -8,6 +8,8 @@ public interface IRequestService {
 	
 	public List<Request> findAll();
 	
-	public void save(Request request);
+	public Request save(Request request);
+	
+	public Request findById(Integer id);
 
 }

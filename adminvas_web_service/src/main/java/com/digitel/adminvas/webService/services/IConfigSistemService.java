@@ -8,6 +8,8 @@ public interface IConfigSistemService {
 	
 	public List<ConfigSistem> findAll();
 	
-	public void save(ConfigSistem configSistem);
+	public ConfigSistem findById(Integer id);
+	
+	public ConfigSistem save(ConfigSistem configSistem);
 
 }
