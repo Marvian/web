@@ -39,7 +39,14 @@ public class Addendum implements Serializable {
 	@Column (name = "add_cantidad_mt_por_mo")
 	private String MTXMO;
 	
-		
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public Date getCreateDate() {
 		return createDate;
 	}

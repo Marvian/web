@@ -29,7 +29,6 @@ public class Employee extends User implements Serializable{
 	@Column(name = "emp_aprobador")
 	private String approver;
 	
-	
 	public int getId() {
 		return id;
 	}

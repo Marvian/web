@@ -4,11 +4,15 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table (name = "A_AREA")
@@ -25,6 +29,11 @@ public class Area implements Serializable {
 	
 	@Column(name = "are_correo")
 	private String email;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="area_id")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Area area;
 	
 		
 	public int getId() {
@@ -51,6 +60,16 @@ public class Area implements Serializable {
 		this.email = email;
 	}
 	
+	public Area getArea() {
+		return area;
+	}
+
+	public void setArea(Area area) {
+		this.area = area;
+	}
+
+
+
 	private static final long serialVersionUID = 1L;
 	
 	

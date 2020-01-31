@@ -23,7 +23,7 @@ import com.digitel.adminvas.webService.services.IRequestService;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
-@RequestMapping(value = "/Request")
+@RequestMapping(value = "/request")
 public class RequestController {
 	
 	@Autowired
@@ -50,7 +50,7 @@ public class RequestController {
 		}
 		
 		if (request == null) {
-			response.put("Mensaje", "El proveedor con ese ID ".concat(id.toString()).
+			response.put("Mensaje", "La solicitud con ese ID ".concat(id.toString()).
 					concat(" no existe en la base de dato"));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
 		}		
@@ -62,7 +62,7 @@ public class RequestController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<?> create(@RequestBody Request request) {
 		System.out.println(request);
-		System.out.println("creando nuevo proveedor");
+		System.out.println("creando nueva solicitud");
 		
 		Request requestNew = null;
 		
@@ -76,7 +76,7 @@ public class RequestController {
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		response.put("Mensaje", "Se realizo el insert con exito");
-		response.put("Proveedor", requestNew);
+		response.put("Solicitud", requestNew);
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 	
@@ -104,7 +104,7 @@ public class RequestController {
 		}
 		
 		response.put("Mensaje", "Se realizo la actualización con exito");
-		response.put("Proveedor", requestAfter);
+		response.put("Solicitud", requestAfter);
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED) ;		
 	}
 

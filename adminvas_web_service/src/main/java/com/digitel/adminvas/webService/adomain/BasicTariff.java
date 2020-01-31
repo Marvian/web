@@ -1,6 +1,7 @@
 package com.digitel.adminvas.webService.adomain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table (name = "A_TARIFA_BASE")
@@ -25,6 +28,14 @@ public class BasicTariff implements Serializable {
 	
 	@Column(name = "tba_tipo_trafico")
 	private String trafic;
+	
+	@Column (name = "tba_fecha_inicio")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createDate;
+	
+	@Column(name = "tba_fecha_fin")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date closingDate;
 	
 	@Column(name = "tba_vigente")
 	private boolean valid;
