@@ -52,5 +52,7 @@ public class AreaController {
 		}		
 		return new ResponseEntity<Area>(area, HttpStatus.OK);
 	}
+	
+	
 
 }

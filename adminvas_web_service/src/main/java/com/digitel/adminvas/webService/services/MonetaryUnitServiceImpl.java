@@ -20,11 +20,17 @@ public class MonetaryUnitServiceImpl implements IMonetaryUnitService{
 	public List<MonetaryUnit> findAll() {
 		return (List<MonetaryUnit>) MonetaryUnitDao.findAll();
 	}
+	
+	@Override
+	public MonetaryUnit findById(Integer id) {
+		return MonetaryUnitDao.findById(id).orElse(null);
+	}
+	
 
 	@Override
 	@Transactional
-	public void save(MonetaryUnit monetaryUnit) {
-		MonetaryUnitDao.save(monetaryUnit);
+	public MonetaryUnit save(MonetaryUnit monetaryUnit) {
+		return MonetaryUnitDao.save(monetaryUnit);
 		
 	}
 

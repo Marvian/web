@@ -4,11 +4,16 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table (name = "A_EMPLEADO")
@@ -28,6 +33,11 @@ public class Employee extends User implements Serializable{
 	
 	@Column(name = "emp_aprobador")
 	private String approver;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="emp_fk_are")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Area area;
 	
 	public int getId() {
 		return id;
@@ -59,6 +69,14 @@ public class Employee extends User implements Serializable{
 
 	public void setApprover(String approver) {
 		this.approver = approver;
+	}
+	
+	public Area getArea() {
+		return area;
+	}
+
+	public void setArea(Area area) {
+		this.area = area;
 	}
 
 	private static final long serialVersionUID = 1L;

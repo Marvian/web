@@ -5,13 +5,18 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table (name = "A_PROVEEDOR")
@@ -51,8 +56,10 @@ public class Provider extends User implements Serializable {
 	@Column(name = "pro_status")
 	private String status;
 	
-	@Column(name = "pro_fk_are")
-	private int fk_area;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="pro_fk_are")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Area area;
 	
 	
 	public int getId() {
@@ -135,18 +142,14 @@ public class Provider extends User implements Serializable {
 		this.status = status;
 	}
 
-	public int getFk_area() {
-		return fk_area;
+	public Area getArea() {
+		return area;
 	}
 
-	public void setFk_area(int fk_area) {
-		this.fk_area = fk_area;
+	public void setArea(Area area) {
+		this.area = area;
 	}
-
-
-
-
-
+	
 	private static final long serialVersionUID = 1L;
 
 }
