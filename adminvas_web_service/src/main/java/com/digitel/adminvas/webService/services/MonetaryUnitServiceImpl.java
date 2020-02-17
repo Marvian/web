@@ -26,7 +26,6 @@ public class MonetaryUnitServiceImpl implements IMonetaryUnitService{
 		return MonetaryUnitDao.findById(id).orElse(null);
 	}
 	
-
 	@Override
 	@Transactional
 	public MonetaryUnit save(MonetaryUnit monetaryUnit) {

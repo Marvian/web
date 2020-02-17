@@ -8,6 +8,8 @@ public interface IProviderContactService {
 	
 	public List<ProviderContact> findAll();
 	
-	public void save(ProviderContact providerContact);
+	public ProviderContact findById(Integer id);
+	
+	public ProviderContact save(ProviderContact providerContact);
 
 }

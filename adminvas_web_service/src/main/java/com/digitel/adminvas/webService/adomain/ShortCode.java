@@ -5,13 +5,18 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table (name= "A_NUMERO_CORTO")
@@ -52,8 +57,10 @@ public class ShortCode implements Serializable {
 	@Column(name = "nco_observaciones")
 	private String observation;
 	
-	@Column(name = "nco_fk_add")
-	private int addendum;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="nco_fk_add")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Addendum addendum ;
 	
 	@Column(name = "nco_fk_con")
 	private int contrato;
@@ -109,6 +116,14 @@ public class ShortCode implements Serializable {
 
 	public void setClose_date(Date close_date) {
 		this.close_date = close_date;
+	}
+
+	public Addendum getAddendum() {
+		return addendum;
+	}
+
+	public void setAddendum(Addendum addendum) {
+		this.addendum = addendum;
 	}
 
 	public String getProductname() {

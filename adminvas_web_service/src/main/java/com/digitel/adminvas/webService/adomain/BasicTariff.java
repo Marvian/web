@@ -64,6 +64,22 @@ public class BasicTariff implements Serializable {
 		this.trafic = trafic;
 	}
 
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public Date getClosingDate() {
+		return closingDate;
+	}
+
+	public void setClosingDate(Date closingDate) {
+		this.closingDate = closingDate;
+	}
+
 	public boolean isValid() {
 		return valid;
 	}

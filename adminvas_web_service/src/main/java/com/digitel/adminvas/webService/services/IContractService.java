@@ -8,6 +8,8 @@ public interface IContractService {
 	
 	public List<Contract> findAll();
 	
-	public void save(Contract contract);
+	public Contract findById(Integer id);
+	
+	public Contract save(Contract contract);
 
 }

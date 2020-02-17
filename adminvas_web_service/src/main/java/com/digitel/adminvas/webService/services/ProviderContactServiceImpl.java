@@ -20,11 +20,17 @@ public class ProviderContactServiceImpl implements IProviderContactService{
 	public List<ProviderContact> findAll() {
 		return (List<ProviderContact>) ProviderContactDao.findAll();
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public ProviderContact findById(Integer id) {
+		return ProviderContactDao.findById(id).orElse(null);
+	}
 
 	@Override
 	@Transactional
-	public void save(ProviderContact providerContact) {
-		ProviderContactDao.save(providerContact);
+	public ProviderContact save(ProviderContact providerContact) {
+		return ProviderContactDao.save(providerContact);
 		
 	}
 

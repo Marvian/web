@@ -8,6 +8,6 @@ public interface ILogService {
 	
 	public List<Log> findAll();
 	
-	public void save(Log log);
+	public Log save(Log log);
 
 }

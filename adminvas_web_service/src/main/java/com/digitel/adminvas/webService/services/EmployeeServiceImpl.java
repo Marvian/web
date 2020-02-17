@@ -20,5 +20,18 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	public List<Employee> findAll() {
 		return (List<Employee>) employeeDao.findAll();
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Employee findById(Integer id) {
+		return employeeDao.findById(id).orElse(null);
+	}
+
+	@Override
+	@Transactional
+	public Employee save(Employee employee) {
+		return employeeDao.save(employee);
+		
+	}
 
 }

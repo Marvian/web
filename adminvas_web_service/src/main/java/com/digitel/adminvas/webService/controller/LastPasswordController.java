@@ -15,64 +15,63 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.digitel.adminvas.webService.adomain.MonetaryUnit;
-import com.digitel.adminvas.webService.services.IMonetaryUnitService;
+import com.digitel.adminvas.webService.adomain.LastPassword;
+import com.digitel.adminvas.webService.services.ILastPasswordService;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
-@RequestMapping(value = "/monetaryUnit")
+@RequestMapping(value = "/lastPassword")
 public class LastPasswordController {
 	
 	@Autowired
-	private IMonetaryUnitService monetaryUnitService;
+	private ILastPasswordService lastPasswordService;
 	
 	@GetMapping(value = "/readAll")
-	public List<MonetaryUnit> index(){
-		return monetaryUnitService.findAll();
+	public List<LastPassword> index(){
+		return lastPasswordService.findAll();
 		
 	}
 	
 	@GetMapping(value = "read/{id}")
 	public ResponseEntity<?> show(@PathVariable Integer id){
 		
-		MonetaryUnit monetaryUnit = null;
+		LastPassword lastPassword = null;
 		
 		Map<String, Object> response = new HashMap<>();
 		
 		try {
-			monetaryUnit = monetaryUnitService.findById(id);
+			lastPassword = lastPasswordService.findById(id);
 		} catch (DataAccessException e) {
 			response.put("Mensaje", "Error al realizar la consulta");
 			response.put("Error", e.getMessage().concat(": ".concat(e.getMostSpecificCause().getMessage())));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
-		if (monetaryUnit == null) {
+		if (lastPassword == null) {
 			response.put("Mensaje", "El proveedor con ese ID ".concat(id.toString()).
 					concat(" no existe en la base de dato"));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
 		}		
-		return new ResponseEntity<MonetaryUnit>(monetaryUnit, HttpStatus.OK);
+		return new ResponseEntity<LastPassword>(lastPassword, HttpStatus.OK);
 	}
 	
 	
 	@PutMapping(value ="/update/{id}")
-	public  ResponseEntity<?> update(@RequestBody MonetaryUnit monetaryUnit, @PathVariable Integer id) {
-		MonetaryUnit monetaryUnitBefore = monetaryUnitService.findById(id);
-		MonetaryUnit monetaryUnitAfter = null;
+	public  ResponseEntity<?> update(@RequestBody LastPassword lastPassword, @PathVariable Integer id) {
+		LastPassword lastPasswordBefore = lastPasswordService.findById(id);
+		LastPassword lastPasswordAfter = null;
 		
 		Map<String, Object> response = new HashMap<>();
-		if (monetaryUnitBefore == null) {
+		if (lastPasswordBefore == null) {
 			response.put("Mensaje", "Error: no se pudo editar el proveedor con el ID ".concat(id.toString()).
 					concat(" no existe en la base de dato"));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
 		}
 		
 		try {			
-			monetaryUnitBefore.setName(monetaryUnit.getName());
-			monetaryUnitBefore.setNotation(monetaryUnit.getNotation());
+			lastPasswordBefore.setPassword(lastPassword.getPassword());
 		
-			monetaryUnitAfter = monetaryUnitService.save(monetaryUnitBefore);
+			lastPasswordAfter = lastPasswordService.save(lastPasswordBefore);
 		
 		} catch (DataAccessException e) {
 			response.put("Mensaje", "Error al realizar la actualización");
@@ -81,7 +80,7 @@ public class LastPasswordController {
 		}
 		
 		response.put("Mensaje", "Se realizo la actualización con exito");
-		response.put("Impuesto", monetaryUnitAfter);
+		response.put("Impuesto", lastPasswordAfter);
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED) ;		
 	}
 }

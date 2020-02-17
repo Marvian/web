@@ -21,11 +21,17 @@ public class ContractServiceImpl implements IContractService{
 	public List<Contract> findAll() {
 		return (List<Contract>) ContractDao.findAll();
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Contract findById(Integer id) {
+		return ContractDao.findById(id).orElse(null);
+	}
 
 	@Override
 	@Transactional
-	public void save(Contract contract) {
-		ContractDao.save(contract);
+	public Contract save(Contract contract) {
+		return ContractDao.save(contract);
 		
 	}
 

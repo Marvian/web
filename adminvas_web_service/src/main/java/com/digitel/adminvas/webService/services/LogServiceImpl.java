@@ -23,8 +23,8 @@ public class LogServiceImpl implements ILogService{
 
 	@Override
 	@Transactional
-	public void save(Log log) {
-		LogDao.save(log);
+	public Log save(Log log) {
+		return LogDao.save(log);
 		
 	}
 

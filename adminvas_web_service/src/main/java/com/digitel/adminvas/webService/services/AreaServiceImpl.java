@@ -22,15 +22,15 @@ public class AreaServiceImpl implements IAreaService{
 	}
 
 	@Override
-	@Transactional
-	public void save(Area area) {
-		AreaDao.save(area);
-		
-	}
-
-	@Override
 	public Area findById(Integer id) {
 		return AreaDao.findById(id).orElse(null);
+	}
+	
+	@Override
+	@Transactional
+	public Area save(Area area) {
+		return AreaDao.save(area);
+		
 	}
 
 }

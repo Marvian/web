@@ -11,6 +11,6 @@ public interface IAreaService {
 	
 	public Area findById(Integer id);
 	
-	public void save(Area area);
+	public Area save(Area area);
 
 }
