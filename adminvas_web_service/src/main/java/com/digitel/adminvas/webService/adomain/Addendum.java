@@ -34,10 +34,10 @@ public class Addendum implements Serializable {
 	private String type;
 	
 	@Column (name = "add_descripcion")
-	private String Description;
+	private String description;
 	
 	@Column (name = "add_cantidad_mt_por_mo")
-	private String MTXMO;
+	private int MTXMO;
 	
 	public int getId() {
 		return id;
@@ -64,21 +64,21 @@ public class Addendum implements Serializable {
 	}
 	
 	public String getDescription() {
-		return Description;
+		return description;
 	}
-	
+
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
-	
-	public String getMTXMO() {
+
+	public int getMTXMO() {
 		return MTXMO;
 	}
-	
-	public void setMTXMO(String mTXMO) {
+
+	public void setMTXMO(int mTXMO) {
 		MTXMO = mTXMO;
 	}
-	
+
 	public String getType() {
 		return type;
 	}

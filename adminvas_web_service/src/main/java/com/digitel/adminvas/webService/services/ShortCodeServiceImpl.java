@@ -29,8 +29,8 @@ public class ShortCodeServiceImpl implements IShortCodeService {
 
 	@Override
 	@Transactional
-	public void save(ShortCode shortcode) {
-		shortCodeDao.save(shortcode);
+	public ShortCode save(ShortCode shortcode) {
+		return shortCodeDao.save(shortcode);
 	}
 
 	

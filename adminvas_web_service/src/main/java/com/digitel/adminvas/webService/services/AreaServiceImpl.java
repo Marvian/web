@@ -22,6 +22,7 @@ public class AreaServiceImpl implements IAreaService{
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Area findById(Integer id) {
 		return AreaDao.findById(id).orElse(null);
 	}

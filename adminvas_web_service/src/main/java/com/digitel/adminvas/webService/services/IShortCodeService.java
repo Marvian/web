@@ -9,6 +9,6 @@ public interface IShortCodeService {
 	
 	public ShortCode findById(Integer id);
 	
-	public void save(ShortCode shortcode);
+	public ShortCode save(ShortCode shortcode);
 
 }
