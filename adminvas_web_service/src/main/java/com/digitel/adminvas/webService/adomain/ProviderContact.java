@@ -4,11 +4,16 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table (name = "A_CONTACTO")
@@ -41,9 +46,10 @@ public class ProviderContact implements Serializable {
 	@Column (name = "cpr_descripcion")
 	private String description;
 	
-	@Column (name = "cpr_fk_pro")
-	private int fk_provider;
-	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="cpr_fk_pro")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Provider provider;	
 		
 	public int getId() {
 		return id;
@@ -108,14 +114,15 @@ public class ProviderContact implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	public int getFk_provider() {
-		return fk_provider;
+
+	public Provider getProvider() {
+		return provider;
 	}
 
-	public void setFk_provider(int fk_provider) {
-		this.fk_provider = fk_provider;
+	public void setProvider(Provider provider) {
+		this.provider = provider;
 	}
+
 
 
 

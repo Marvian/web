@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -62,12 +63,18 @@ public class ShortCode implements Serializable {
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Addendum addendum ;
 	
-	@Column(name = "nco_fk_con")
-	private int contrato;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="nco_fk_con")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Contract contract;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="nco_fk_eco")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private ContentExample contentExample;
 	
 	@Column(name = "nco_fk_umo")
 	private int monetary;
-	
 	
 	
 	public int getId() {
@@ -158,6 +165,22 @@ public class ShortCode implements Serializable {
 		this.observation = observation;
 	}
 	
+	public Contract getContract() {
+		return contract;
+	}
+
+	public void setContract(Contract contract) {
+		this.contract = contract;
+	}
+
+	public ContentExample getContentExample() {
+		return contentExample;
+	}
+
+	public void setContentExample(ContentExample contentExample) {
+		this.contentExample = contentExample;
+	}
+
 	private static final long serialVersionUID = 1L;
 	
 	

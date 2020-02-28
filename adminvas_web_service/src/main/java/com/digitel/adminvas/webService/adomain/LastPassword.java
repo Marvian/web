@@ -5,13 +5,18 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table (name = "A_ULTIMA_CONTRASEÑA")
@@ -33,6 +38,10 @@ public class LastPassword implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date closingDate;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="uco_fk_pro")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Provider provider;	
 	
 	public int getId() {
 		return id;
@@ -64,6 +73,14 @@ public class LastPassword implements Serializable {
 
 	public void setClosingDate(Date closingDate) {
 		this.closingDate = closingDate;
+	}
+
+	public Provider getProvider() {
+		return provider;
+	}
+
+	public void setProvider(Provider provider) {
+		this.provider = provider;
 	}
 
 	private static final long serialVersionUID = 1L;
