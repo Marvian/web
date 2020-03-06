@@ -29,7 +29,7 @@ public class EmployeeController {
 	@Autowired
 	private IEmployeeService employeeService;
 	
-	@GetMapping(value = "/readEmployee")
+	@GetMapping(value = "/readAll")
 	public List<Employee> index(){
 		return employeeService.findAll();
 		

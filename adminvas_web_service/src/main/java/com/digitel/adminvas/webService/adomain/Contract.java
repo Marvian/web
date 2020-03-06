@@ -46,12 +46,12 @@ public class Contract implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="con_fk_tco")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private String fk_type;
+	private ContracType fk_type;
 	
-	@Column(name = "con_fk_pro")
-	private String fk_provider;
-	
-	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="con_fk_pro")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Provider fk_provider;
 	
 	public int getId() {
 		return id;
@@ -95,19 +95,19 @@ public class Contract implements Serializable {
 		this.expirationDate = expirationDate;
 	}
 
-	public String getFk_type() {
+	public ContracType getFk_type() {
 		return fk_type;
 	}
 
-	public void setFk_type(String fk_type) {
+	public void setFk_type(ContracType fk_type) {
 		this.fk_type = fk_type;
 	}
 
-	public String getFk_provider() {
+	public Provider getFk_provider() {
 		return fk_provider;
 	}
 
-	public void setFk_provider(String fk_provider) {
+	public void setFk_provider(Provider fk_provider) {
 		this.fk_provider = fk_provider;
 	}
 

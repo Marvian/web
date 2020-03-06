@@ -5,11 +5,16 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table (name = "A_Solicitud")
@@ -48,8 +53,10 @@ public class Request implements Serializable {
 	@Column(name = "sol_fk_nco")
 	private int fk_shortCode;
 	
-	@Column(name = "sol_fk_tso")
-	private int typeRequest;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="sol_fk_tso")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private RequestType fk_requestType;
 	
 	@Column(name = "sol_fk_pro")
 	private int fk_provider;
@@ -175,24 +182,17 @@ public class Request implements Serializable {
 	}
 
 
-
-	public int getTypeRequest() {
-		return typeRequest;
+	public RequestType getFk_requestType() {
+		return fk_requestType;
 	}
 
-
-
-	public void setTypeRequest(int typeRequest) {
-		this.typeRequest = typeRequest;
+	public void setFk_requestType(RequestType fk_requestType) {
+		this.fk_requestType = fk_requestType;
 	}
-
-
 
 	public int getFk_provider() {
 		return fk_provider;
 	}
-
-
 
 	public void setFk_provider(int fk_provider) {
 		this.fk_provider = fk_provider;

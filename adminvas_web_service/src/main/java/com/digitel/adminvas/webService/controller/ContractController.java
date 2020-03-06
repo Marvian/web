@@ -50,7 +50,7 @@ public class ContractController {
 		}
 		
 		if (contract == null) {
-			response.put("Mensaje", "El proveedor con ese ID ".concat(id.toString()).
+			response.put("Mensaje", "El contrato con ese ID ".concat(id.toString()).
 					concat(" no existe en la base de dato"));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
 		}		

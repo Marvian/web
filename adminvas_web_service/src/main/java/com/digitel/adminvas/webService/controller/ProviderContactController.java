@@ -52,7 +52,7 @@ public class ProviderContactController {
 		}
 		
 		if (providerContact == null) {
-			response.put("Mensaje", "El empleado con ese ID ".concat(id.toString()).
+			response.put("Mensaje", "El contacto de ese empleado con ese ID ".concat(id.toString()).
 					concat(" no existe en la base de dato"));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
 		}		
