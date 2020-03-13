@@ -16,7 +16,7 @@ public class ContentExample implements Serializable {
 	@Id
 	@GeneratedValue(generator="SEQ_ejem_contenido", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(name = "SEQ_ejem_contenido",  sequenceName = "SEQ_ejem_contenido", allocationSize = 1)
-	@Column(name = "add_id")
+	@Column(name = "eco_id")
 	private int id;
 	
 	@Column (name = "eco_ejemplo_mt")

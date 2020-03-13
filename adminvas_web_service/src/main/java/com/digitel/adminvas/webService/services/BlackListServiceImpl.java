@@ -13,12 +13,19 @@ import com.digitel.adminvas.webService.dao.IBlackListDao;
 public class BlackListServiceImpl implements IBlackListService {
 	
 	@Autowired
-	private IBlackListDao dao;
+	private IBlackListDao BlackListdao;
 	
 	@Override
 	@Transactional(readOnly = true)
 	public List<BlackList> findAll() {
-		return (List<BlackList>) dao.findAll();
+		return (List<BlackList>) BlackListdao.findAll();
+		
+	}
+	
+	@Override
+	@Transactional
+	public void delete(int id) {
+		BlackListdao.deleteById(id);
 		
 	}
 

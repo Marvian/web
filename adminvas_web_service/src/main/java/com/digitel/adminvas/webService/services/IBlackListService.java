@@ -6,5 +6,7 @@ import com.digitel.adminvas.webService.adomain.BlackList;
 public interface IBlackListService {
 	
 	public List<BlackList> findAll();
+	
+	public void delete(int id);
 
 }
